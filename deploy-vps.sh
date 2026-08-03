@@ -21,7 +21,9 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VPS="lnc@2.56.212.222"
 VPS_PORT="48499"
-DIST="$ROOT_DIR/target/dx/dio-lista-web/release/web/public"
+# dx escreve em CARGO_TARGET_DIR se definido (CI/sandbox); senão target/ local
+TARGET_ROOT="${CARGO_TARGET_DIR:-$ROOT_DIR/target}"
+DIST="$TARGET_ROOT/dx/dio-lista-web/release/web/public"
 MODO="${1:-prod}"
 
 case "$MODO" in
