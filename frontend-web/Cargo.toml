@@ -1,0 +1,17 @@
+[package]
+name = "dio-lista-web"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = { version = "=0.7.9", features = ["web"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["json"] }
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = ["Window", "Storage", "Location", "History"] }
+js-sys = "0.3"
+lista_comum = { path = "../lista_comum" }
+
+[features]
+default = []

@@ -1,0 +1,18 @@
+[application]
+name = "dio-lista"
+default_platform = "web"
+
+[web.app]
+title = "Lista — compras"
+
+[web.watcher]
+reload_html = true
+
+[bundle]
+identifier = "pt.mcs.lista"
+publisher = "MCS Lab"
+short_description = "Lista de compras"
+long_description = "Ajuda nas compras do hipermercado"
+
+[android]
+identifier = "pt.mcs.lista"

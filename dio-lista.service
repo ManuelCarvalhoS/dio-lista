@@ -1,0 +1,19 @@
+[Unit]
+Description=Lista — Teste (Dioxus / compras)
+After=network.target
+
+[Service]
+Type=simple
+User=lnc
+WorkingDirectory=/opt/dio/dio-lista
+ExecStart=/opt/dio/dio-lista/lista_serv
+EnvironmentFile=-/opt/dio/dio-lista/.env
+Environment=LISTA_PORT=8088
+Environment=LISTA_DATA_DIR=/opt/dio/dio-lista/data
+Environment=LISTA_DIST=/opt/dio/dio-lista/dist
+Environment=LISTA_DEV_LOGIN=0
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

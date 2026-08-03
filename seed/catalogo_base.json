@@ -1,0 +1,584 @@
+[
+  {
+    "nome": "Banana",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag1.png"
+  },
+  {
+    "nome": "Maçã",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag2.png"
+  },
+  {
+    "nome": "Laranja",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag3.png"
+  },
+  {
+    "nome": "Tomate",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag4.png"
+  },
+  {
+    "nome": "Alface",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag5.png"
+  },
+  {
+    "nome": "Cenoura",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag6.png"
+  },
+  {
+    "nome": "Batata",
+    "unidade": 1,
+    "secao": 1,
+    "imag": "imag7.png"
+  },
+  {
+    "nome": "Cebola",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag8.png"
+  },
+  {
+    "nome": "Alho",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag9.png"
+  },
+  {
+    "nome": "Pepino",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag10.png"
+  },
+  {
+    "nome": "Pimento",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag11.png"
+  },
+  {
+    "nome": "Couve",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag12.png"
+  },
+  {
+    "nome": "Espinafres",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag13.png"
+  },
+  {
+    "nome": "Morango",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag14.png"
+  },
+  {
+    "nome": "Uva",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag15.png"
+  },
+  {
+    "nome": "Pêra",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag16.png"
+  },
+  {
+    "nome": "Limão",
+    "unidade": 0,
+    "secao": 11,
+    "imag": "imag17.png"
+  },
+  {
+    "nome": "Abóbora",
+    "unidade": 1,
+    "secao": 1,
+    "imag": "imag18.png"
+  },
+  {
+    "nome": "Brócolos",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag19.png"
+  },
+  {
+    "nome": "Courgete",
+    "unidade": 0,
+    "secao": 1,
+    "imag": "imag20.png"
+  },
+  {
+    "nome": "Frango",
+    "unidade": 1,
+    "secao": 2,
+    "imag": "imag21.png"
+  },
+  {
+    "nome": "Bifes de vaca",
+    "unidade": 1,
+    "secao": 2,
+    "imag": "imag22.png"
+  },
+  {
+    "nome": "Carne picada",
+    "unidade": 1,
+    "secao": 2,
+    "imag": "imag23.png"
+  },
+  {
+    "nome": "Costeleta porco",
+    "unidade": 1,
+    "secao": 2,
+    "imag": "imag24.png"
+  },
+  {
+    "nome": "Fiambre",
+    "unidade": 0,
+    "secao": 2,
+    "imag": "imag25.png"
+  },
+  {
+    "nome": "Chouriço",
+    "unidade": 0,
+    "secao": 2,
+    "imag": "imag26.png"
+  },
+  {
+    "nome": "Bacon",
+    "unidade": 0,
+    "secao": 2,
+    "imag": "imag27.png"
+  },
+  {
+    "nome": "Salsichas",
+    "unidade": 0,
+    "secao": 2,
+    "imag": "imag28.png"
+  },
+  {
+    "nome": "Peru",
+    "unidade": 1,
+    "secao": 2,
+    "imag": "imag29.png"
+  },
+  {
+    "nome": "Entrecosto",
+    "unidade": 1,
+    "secao": 2,
+    "imag": "imag30.png"
+  },
+  {
+    "nome": "Pescada",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag31.png"
+  },
+  {
+    "nome": "Salmão",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag32.png"
+  },
+  {
+    "nome": "Atum fresco",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag33.png"
+  },
+  {
+    "nome": "Bacalhau",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag34.png"
+  },
+  {
+    "nome": "Camarão",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag35.png"
+  },
+  {
+    "nome": "Polvo",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag36.png"
+  },
+  {
+    "nome": "Dourada",
+    "unidade": 1,
+    "secao": 3,
+    "imag": "imag37.png"
+  },
+  {
+    "nome": "Sardinhas",
+    "unidade": 0,
+    "secao": 3,
+    "imag": "imag38.png"
+  },
+  {
+    "nome": "Leite",
+    "unidade": 3,
+    "secao": 4,
+    "imag": "imag39.png"
+  },
+  {
+    "nome": "Iogurte natural",
+    "unidade": 0,
+    "secao": 4,
+    "imag": "imag40.png"
+  },
+  {
+    "nome": "Queijo fresco",
+    "unidade": 0,
+    "secao": 4,
+    "imag": "imag41.png"
+  },
+  {
+    "nome": "Queijo flamengo",
+    "unidade": 0,
+    "secao": 4,
+    "imag": "imag42.png"
+  },
+  {
+    "nome": "Manteiga",
+    "unidade": 0,
+    "secao": 4,
+    "imag": "imag43.png"
+  },
+  {
+    "nome": "Natas",
+    "unidade": 3,
+    "secao": 4,
+    "imag": "imag44.png"
+  },
+  {
+    "nome": "Ovos",
+    "unidade": 0,
+    "secao": 4,
+    "imag": "imag45.png"
+  },
+  {
+    "nome": "Queijo ralado",
+    "unidade": 0,
+    "secao": 4,
+    "imag": "imag46.png"
+  },
+  {
+    "nome": "Bebida de soja",
+    "unidade": 3,
+    "secao": 4,
+    "imag": "imag47.png"
+  },
+  {
+    "nome": "Pão de forma",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag48.png"
+  },
+  {
+    "nome": "Arroz",
+    "unidade": 1,
+    "secao": 5,
+    "imag": "imag49.png"
+  },
+  {
+    "nome": "Massa esparguete",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag50.png"
+  },
+  {
+    "nome": "Azeite",
+    "unidade": 3,
+    "secao": 5,
+    "imag": "imag51.png"
+  },
+  {
+    "nome": "Óleo alimentar",
+    "unidade": 3,
+    "secao": 5,
+    "imag": "imag52.png"
+  },
+  {
+    "nome": "Açúcar",
+    "unidade": 1,
+    "secao": 5,
+    "imag": "imag53.png"
+  },
+  {
+    "nome": "Farinha",
+    "unidade": 1,
+    "secao": 5,
+    "imag": "imag54.png"
+  },
+  {
+    "nome": "Sal",
+    "unidade": 1,
+    "secao": 5,
+    "imag": "imag55.png"
+  },
+  {
+    "nome": "Café moído",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag56.png"
+  },
+  {
+    "nome": "Chá",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag57.png"
+  },
+  {
+    "nome": "Cereais",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag58.png"
+  },
+  {
+    "nome": "Bolachas",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag59.png"
+  },
+  {
+    "nome": "Atum em lata",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag60.png"
+  },
+  {
+    "nome": "Feijão",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag61.png"
+  },
+  {
+    "nome": "Grão de bico",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag62.png"
+  },
+  {
+    "nome": "Milho em lata",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag63.png"
+  },
+  {
+    "nome": "Molho de tomate",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag64.png"
+  },
+  {
+    "nome": "Vinagre",
+    "unidade": 3,
+    "secao": 5,
+    "imag": "imag65.png"
+  },
+  {
+    "nome": "Mel",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag66.png"
+  },
+  {
+    "nome": "Compota",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag67.png"
+  },
+  {
+    "nome": "Chocolate",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag68.png"
+  },
+  {
+    "nome": "Amêndoas",
+    "unidade": 0,
+    "secao": 5,
+    "imag": "imag69.png"
+  },
+  {
+    "nome": "Água 1,5L",
+    "unidade": 0,
+    "secao": 6,
+    "imag": "imag70.png"
+  },
+  {
+    "nome": "Sumo de laranja",
+    "unidade": 3,
+    "secao": 6,
+    "imag": "imag71.png"
+  },
+  {
+    "nome": "Refrigerante",
+    "unidade": 0,
+    "secao": 6,
+    "imag": "imag72.png"
+  },
+  {
+    "nome": "Cerveja",
+    "unidade": 0,
+    "secao": 6,
+    "imag": "imag73.png"
+  },
+  {
+    "nome": "Vinho tinto",
+    "unidade": 0,
+    "secao": 6,
+    "imag": "imag74.png"
+  },
+  {
+    "nome": "Vinho branco",
+    "unidade": 0,
+    "secao": 6,
+    "imag": "imag75.png"
+  },
+  {
+    "nome": "Detergente loiça",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag76.png"
+  },
+  {
+    "nome": "Detergente roupa",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag77.png"
+  },
+  {
+    "nome": "Amaciador",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag78.png"
+  },
+  {
+    "nome": "Lixívia",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag79.png"
+  },
+  {
+    "nome": "Limpa-vidros",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag80.png"
+  },
+  {
+    "nome": "Sacos do lixo",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag81.png"
+  },
+  {
+    "nome": "Esponjas",
+    "unidade": 0,
+    "secao": 7,
+    "imag": "imag82.png"
+  },
+  {
+    "nome": "Pasta de dentes",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag83.png"
+  },
+  {
+    "nome": "Champô",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag84.png"
+  },
+  {
+    "nome": "Gel de banho",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag85.png"
+  },
+  {
+    "nome": "Sabonete",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag86.png"
+  },
+  {
+    "nome": "Papel higiénico",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag87.png"
+  },
+  {
+    "nome": "Guardanapos",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag88.png"
+  },
+  {
+    "nome": "Desodorizante",
+    "unidade": 0,
+    "secao": 8,
+    "imag": "imag89.png"
+  },
+  {
+    "nome": "Pizza congelada",
+    "unidade": 0,
+    "secao": 9,
+    "imag": "imag90.png"
+  },
+  {
+    "nome": "Peixe panado",
+    "unidade": 0,
+    "secao": 9,
+    "imag": "imag91.png"
+  },
+  {
+    "nome": "Legumes congel.",
+    "unidade": 0,
+    "secao": 9,
+    "imag": "imag92.png"
+  },
+  {
+    "nome": "Gelado",
+    "unidade": 0,
+    "secao": 9,
+    "imag": "imag93.png"
+  },
+  {
+    "nome": "Batata frita cong.",
+    "unidade": 0,
+    "secao": 9,
+    "imag": "imag94.png"
+  },
+  {
+    "nome": "Ração para cão",
+    "unidade": 0,
+    "secao": 10,
+    "imag": "imag95.png"
+  },
+  {
+    "nome": "Ração para gato",
+    "unidade": 0,
+    "secao": 10,
+    "imag": "imag96.png"
+  },
+  {
+    "nome": "Pilhas",
+    "unidade": 0,
+    "secao": 10,
+    "imag": "imag97.png"
+  }
+]

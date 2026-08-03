@@ -1,0 +1,21 @@
+[Unit]
+Description=Lista — Produção (Dioxus / compras)
+After=network.target
+
+[Service]
+Type=simple
+User=lnc
+WorkingDirectory=/opt/dio/dio-lista-prod
+ExecStart=/opt/dio/dio-lista-prod/lista_serv
+# Secrets e overrides (não versionar no unit)
+EnvironmentFile=-/opt/dio/dio-lista-prod/.env
+Environment=LISTA_PORT=8088
+Environment=LISTA_DATA_DIR=/opt/dio/dio-lista-prod/data
+Environment=LISTA_DIST=/opt/dio/dio-lista-prod/dist
+Environment=LISTA_DEV_LOGIN=0
+# LABNETCOL_SECRET / LABNETCOL_FRONTEND_URL / LISTA_JWT_SECRET → .env
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

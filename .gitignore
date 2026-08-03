@@ -1,0 +1,17 @@
+/target
+/dist
+/data/*
+!data/.gitkeep
+!data/imgs/
+!data/imgs/.gitkeep
+/seed/emoji_cache/
+.DS_Store
+*.dad
+*.h1
+*.h2
+*.i1
+*.i2
+*.i3
+.env
+.env.*
+!.env.example
