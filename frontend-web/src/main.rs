@@ -75,6 +75,11 @@ fn euros_para_cent(s: &str) -> Option<u32> {
     if t.is_empty() {
         return Some(0);
     }
+    // Aceita "1." / "1," a meio da escrita
+    let t = t.trim_end_matches('.');
+    if t.is_empty() {
+        return None;
+    }
     let v: f64 = t.parse().ok()?;
     if !(0.0..=1_000_000.0).contains(&v) {
         return None;
@@ -620,6 +625,8 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
     let mut item_foco = use_signal(|| Option::<u64>::None);
     // Override do preço unitário (cêntimos) enquanto se ajusta com ±.
     let mut preco_unit = use_signal(HashMap::<u64, u32>::new);
+    // Texto livre enquanto se edita o preço (permite "1," a meio da escrita).
+    let mut preco_txt = use_signal(HashMap::<u64, String>::new);
     let mut historico = use_signal(Vec::<CompraHistorico>::new);
     let mut historico_aberto = use_signal(|| false);
     let mut historico_a_carregar = use_signal(|| false);
@@ -712,6 +719,7 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
         item_foco.set(None);
         artigo_foco.set(None);
         preco_unit.set(HashMap::new());
+        preco_txt.set(HashMap::new());
         historico.set(Vec::new());
         historico_aberto.set(false);
         historico_a_carregar.set(false);
@@ -738,6 +746,7 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
 
     let mut focar_item = move |item_id: u64, artigo_id: u64, ref_unit: u32| {
         preco_unit.write().entry(item_id).or_insert(ref_unit);
+        preco_txt.write().entry(item_id).or_insert_with(|| cent_para_curto(ref_unit));
         item_foco.set(Some(item_id));
         artigo_foco.set(Some(artigo_id));
         historico.set(Vec::new());
@@ -1053,6 +1062,10 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
                                                         .get(&id)
                                                         .copied()
                                                         .unwrap_or(it.preco_ref_cent);
+                                                    let txt = preco_txt()
+                                                        .get(&id)
+                                                        .cloned()
+                                                        .unwrap_or_else(|| cent_para_curto(unit));
                                                     let linha = unit.saturating_mul(u32::from(qtd.max(1)));
                                                     let nome = it.nome.clone();
                                                     rsx! {
@@ -1078,19 +1091,44 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
                                                                     onclick: move |_| {
                                                                         let mut m = preco_unit();
                                                                         let actual = m.get(&id).copied().unwrap_or(unit);
-                                                                        m.insert(id, actual.saturating_sub(1));
+                                                                        let novo = actual.saturating_sub(1);
+                                                                        m.insert(id, novo);
                                                                         preco_unit.set(m);
+                                                                        let mut t = preco_txt();
+                                                                        t.insert(id, cent_para_curto(novo));
+                                                                        preco_txt.set(t);
                                                                     },
                                                                     "−"
                                                                 }
-                                                                strong { class: "preco-foco-val", "{cent_para_curto(unit)} €" }
+                                                                input {
+                                                                    class: "preco-foco-input",
+                                                                    r#type: "text",
+                                                                    inputmode: "decimal",
+                                                                    value: "{txt}",
+                                                                    oninput: move |e| {
+                                                                        let raw = e.value();
+                                                                        let mut t = preco_txt();
+                                                                        t.insert(id, raw.clone());
+                                                                        preco_txt.set(t);
+                                                                        if let Some(c) = euros_para_cent(&raw) {
+                                                                            let mut m = preco_unit();
+                                                                            m.insert(id, c.min(999_999));
+                                                                            preco_unit.set(m);
+                                                                        }
+                                                                    },
+                                                                }
+                                                                span { class: "preco-foco-euro", "€" }
                                                                 button {
                                                                     class: "btn-ghost qtd-btn preco-step",
                                                                     onclick: move |_| {
                                                                         let mut m = preco_unit();
                                                                         let actual = m.get(&id).copied().unwrap_or(unit);
-                                                                        m.insert(id, actual.saturating_add(1).min(999_999));
+                                                                        let novo = actual.saturating_add(1).min(999_999);
+                                                                        m.insert(id, novo);
                                                                         preco_unit.set(m);
+                                                                        let mut t = preco_txt();
+                                                                        t.insert(id, cent_para_curto(novo));
+                                                                        preco_txt.set(t);
                                                                     },
                                                                     "+"
                                                                 }
@@ -1100,8 +1138,12 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
                                                                     onclick: move |_| {
                                                                         let mut m = preco_unit();
                                                                         let actual = m.get(&id).copied().unwrap_or(unit);
-                                                                        m.insert(id, actual.saturating_sub(10));
+                                                                        let novo = actual.saturating_sub(10);
+                                                                        m.insert(id, novo);
                                                                         preco_unit.set(m);
+                                                                        let mut t = preco_txt();
+                                                                        t.insert(id, cent_para_curto(novo));
+                                                                        preco_txt.set(t);
                                                                     },
                                                                     "−10¢"
                                                                 }
@@ -1111,8 +1153,12 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
                                                                     onclick: move |_| {
                                                                         let mut m = preco_unit();
                                                                         let actual = m.get(&id).copied().unwrap_or(unit);
-                                                                        m.insert(id, actual.saturating_add(10).min(999_999));
+                                                                        let novo = actual.saturating_add(10).min(999_999);
+                                                                        m.insert(id, novo);
                                                                         preco_unit.set(m);
+                                                                        let mut t = preco_txt();
+                                                                        t.insert(id, cent_para_curto(novo));
+                                                                        preco_txt.set(t);
                                                                     },
                                                                     "+10¢"
                                                                 }
@@ -1162,6 +1208,9 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
                                                                                                     let mut m = preco_unit();
                                                                                                     m.insert(id, unit_h);
                                                                                                     preco_unit.set(m);
+                                                                                                    let mut t = preco_txt();
+                                                                                                    t.insert(id, cent_para_curto(unit_h));
+                                                                                                    preco_txt.set(t);
                                                                                                     if loja_id_h > 0 {
                                                                                                         loja_ida.set(Some(loja_id_h));
                                                                                                         guardar_loja_ida(Some(loja_id_h));
@@ -1367,6 +1416,7 @@ fn ComprasPainel(api_url: Signal<String>, sessao: SessaoLista, modo_ida: bool) -
                                                                                     Ok(_) => {
                                                                                         if novo == 1 {
                                                                                             preco_unit.write().remove(&id);
+                                                                                            preco_txt.write().remove(&id);
                                                                                             if item_foco() == Some(id) {
                                                                                                 item_foco.set(None);
                                                                                             }

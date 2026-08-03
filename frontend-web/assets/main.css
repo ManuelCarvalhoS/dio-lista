@@ -434,6 +434,17 @@ select.input {
   font-variant-numeric: tabular-nums; font-size: 1.15rem;
   color: var(--leaf-deep);
 }
+.preco-foco-input {
+  width: 5.2rem; text-align: right; font-variant-numeric: tabular-nums;
+  font-size: 1.15rem; font-weight: 700; padding: 0.35rem 0.45rem;
+  border: 1px solid rgba(26,46,31,0.22); border-radius: 6px;
+  background: #fff; color: var(--leaf-deep);
+}
+.preco-foco-input:focus {
+  outline: none; border-color: var(--leaf);
+  box-shadow: 0 0 0 2px rgba(47,107,69,0.2);
+}
+.preco-foco-euro { font-weight: 600; color: var(--ink); margin-right: 0.1rem; }
 .preco-step {
   min-width: 2.4rem; min-height: 2.4rem;
   font-size: 1.15rem; font-weight: 600;

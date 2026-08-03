@@ -146,12 +146,13 @@ async fn mapa_ultimo_unitario(
 }
 
 fn unitario_ref(art: Option<&ArtigoReg>, ultimo: &std::collections::HashMap<u64, (u64, u32)>, artigo_id: u64) -> u32 {
-    if let Some(a) = art {
-        if a.preco_referencia > 0 {
-            return a.preco_referencia;
+    // Preferir último preço do utilizador; senão referência do artigo.
+    if let Some((_, u)) = ultimo.get(&artigo_id) {
+        if *u > 0 {
+            return *u;
         }
     }
-    ultimo.get(&artigo_id).map(|(_, u)| *u).unwrap_or(0)
+    art.map(|a| a.preco_referencia).unwrap_or(0)
 }
 
 fn item_dto(
@@ -627,18 +628,41 @@ pub async fn editar_item(
                 if let Some(bd_c) = state.bd.get("compra") {
                     if let Err(e) = bd_gravar(bd_c.clone(), CompraReg::from_compra(&compra)).await {
                         log::warn!("compra não gravada (item {id}): {e}");
+                    } else if preco_cent > 0 {
+                        // Mantém preço unitário no artigo (ref rápida); o job diário
+                        // recalcula a moda global depois. Evita zerar no ↩ / reabrir.
+                        let unit = preco_unitario(preco_cent, reg.qtd);
+                        if unit > 0 {
+                            if let Some(bd_a) = state.bd.get("artigo") {
+                                if let Ok(Some(mut art)) =
+                                    bd_ler_dados::<ArtigoReg>(bd_a.clone(), reg.artigo_id).await
+                                {
+                                    if art.preco_referencia != unit {
+                                        art.preco_referencia = unit;
+                                        if let Err(e) =
+                                            bd_alterar(bd_a.clone(), art, reg.artigo_id).await
+                                        {
+                                            log::warn!(
+                                                "preco_referencia artigo {}: {e}",
+                                                reg.artigo_id
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                    // preco_referencia: job diário no server (não a cada ✓).
                 }
             }
             // Ao desfazer ✓: tira a compra mais recente deste artigo na ida actual.
+            // Antes de apagar, se o artigo ainda não tem ref, guarda o unitário dessa compra.
             if estado_antes == 1 && reg.estado == 0 {
                 if let Some(bd_c) = state.bd.get("compra") {
                     let desde = ida_activa_lista(&state, reg.lista_id, sess.labnetcol_id)
                         .await
                         .map(|i| i.iniciada_em)
                         .unwrap_or(0);
-                    let mut melhor: Option<(u64, u64)> = None; // n_reg, comprado_em
+                    let mut melhor: Option<(u64, u64, u32, u16)> = None; // n_reg, ts, preco, qtd
                     for (n, r) in bd_listar::<CompraReg>(bd_c.clone())
                         .await
                         .unwrap_or_default()
@@ -652,13 +676,26 @@ pub async fn editar_item(
                         }
                         let trocar = match melhor {
                             None => true,
-                            Some((_, ts)) => r.comprado_em >= ts,
+                            Some((_, ts, _, _)) => r.comprado_em >= ts,
                         };
                         if trocar {
-                            melhor = Some((n, r.comprado_em));
+                            melhor = Some((n, r.comprado_em, r.preco_cent, r.qtd));
                         }
                     }
-                    if let Some((n_compra, _)) = melhor {
+                    if let Some((n_compra, _, preco_linha, qtd_c)) = melhor {
+                        let unit = preco_unitario(preco_linha, qtd_c);
+                        if unit > 0 {
+                            if let Some(bd_a) = state.bd.get("artigo") {
+                                if let Ok(Some(mut art)) =
+                                    bd_ler_dados::<ArtigoReg>(bd_a.clone(), reg.artigo_id).await
+                                {
+                                    if art.preco_referencia == 0 {
+                                        art.preco_referencia = unit;
+                                        let _ = bd_alterar(bd_a.clone(), art, reg.artigo_id).await;
+                                    }
+                                }
+                            }
+                        }
                         if let Err(e) = bd_remover(bd_c.clone(), n_compra).await {
                             log::warn!("compra {n_compra} não removida ao desfazer item {id}: {e}");
                         }
